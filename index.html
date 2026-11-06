@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  
+  <!-- 1. SEO Y METADATOS OPTIMIZADOS PARA AUDITORÍA -->
+  <title>CF Somorrostro | Manual de Supervivencia IT (1º FPB)</title>
+  <meta name="description" content="Manual de supervivencia no oficial del Centro de Formación Somorrostro (San Juan 10, Muskiz). Consejos reales para 1º FPB: madrugar a las 8:00 AM, el Bizkaibus, cables RJ45 y la ansiada cuenta atrás al viernes.">
+  <meta name="author" content="Jareth Rosero">
+  <meta name="keywords" content="Somorrostro, Muskiz, FPB Informatica, Manual de supervivencia, Bizkaibus San Juan, RJ45, T568B, Redes, Hardware, Jareth Rosero">
+  
+  <!-- Open Graph / WhatsApp / Discord / Redes Sociales -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://reto-rediseno-somorrostro.vercel.app/">
+  <meta property="og:title" content="CF Somorrostro | Manual de Supervivencia IT (1º FPB)">
+  <meta property="og:description" content="¿Sobrevivirás a las 8:00 AM y a crimpar cables en San Juan 10, Muskiz? Consulta la guía realista de informática y la cuenta atrás al viernes a las 14:00.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200&auto=format&fit=crop">
+  <meta property="og:image:alt" content="Taller de Informática y Hardware del Centro de Formación Somorrostro">
+  <meta property="og:locale" content="es_ES">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CF Somorrostro | Manual de Supervivencia IT (1º FPB)">
+  <meta name="twitter:description" content="Manual realista y divertido del Centro de Formación Somorrostro (Muskiz). 8:00 AM, Bizkaibus, norma T568B y cuenta atrás al fin de semana.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200&auto=format&fit=crop">
+  <meta name="twitter:image:alt" content="Estudiantes de informática en el taller de Somorrostro">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Space Grotesk & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Space+Grotesk:wght@600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       VARIABLES Y PALETA NEO-BRUTALISTA VIBRANTE (CERO CUEVA OSCURA)
+       ========================================================================== */
+    :root {
+      --bg-cream: #FFFDF2;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #F6F4EB;
+      --ink-black: #000000;
+
+      /* Colores Pop Vibrantes */
+      --pop-yellow: #FFDE59;
+      --pop-cyan: #00E5FF;
+      --pop-orange: #FF5722;
+      --pop-pink: #FF66C4;
+      --pop-green: #00E676;
+      --pop-purple: #9D4EDD;
+
+      /* Bordes negros marcados y sombras sólidas */
+      --border-black: 3px solid #000000;
+      --shadow-solid: 5px 5px 0px #000000;
+      --shadow-solid-sm: 3px 3px 0px #000000;
+      --shadow-solid-lg: 8px 8px 0px #000000;
+      --shadow-hover: 7px 7px 0px #000000;
+
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --radius-box: 14px;
+      --radius-pill: 999px;
+      --radius-sm: 8px;
+    }
+
+    /* ==========================================================================
+       DISEÑO RESPONSIVE ESTRICTO (CERO SCROLL HORIZONTAL A 390PX)
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--ink-black);
+      font-family: var(--font-main);
+      line-height: 1.55;
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(#000000 1.1px, transparent 1.1px),
+        linear-gradient(to bottom, #FFFDF2, #FFF8D4);
+      background-size: 26px 26px, 100% 100%;
+    }
+
+    img, svg {
+      max-width: 100%;
+      height: auto;
+      vertical-align: middle;
+      display: inline-block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Confetti Canvas */
+    #confettiCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 99999;
+    }
+
+    /* Contenedor central fluido */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* ==========================================================================
+       MARQUESINA TICKER SUPERIOR
+       ========================================================================== */
+    .marquee-wrapper {
+      background-color: var(--pop-yellow);
+      border-bottom: var(--border-black);
+      padding: 0.55rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      user-select: none;
+      width: 100%;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      animation: tickerScroll 24s linear infinite;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      gap: 1.8rem;
+    }
+
+    .marquee-track .star {
+      color: var(--pop-orange);
+      font-size: 1.2rem;
+    }
+
+    @keyframes tickerScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ==========================================================================
+       NAVBAR NEO-BRUTALISTA
+       ========================================================================== */
+    .site-nav {
+      background-color: var(--bg-surface);
+      border-bottom: var(--border-black);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+    }
+
+    .nav-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-box {
+      width: 44px;
+      height: 44px;
+      background-color: var(--pop-yellow);
+      border: var(--border-black);
+      box-shadow: 3px 3px 0px #000;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.4rem;
+      transform: rotate(-3deg);
+      transition: transform 0.2s ease;
+    }
+    .brand-box:hover {
+      transform: rotate(5deg) scale(1.06);
+    }
+
+    .brand-info h1 {
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.25rem;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-badge {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 800;
+      background-color: var(--pop-cyan);
+      border: 1.5px solid #000;
+      padding: 0.1rem 0.45rem;
+      border-radius: var(--radius-pill);
+      display: inline-block;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      list-style: none;
+    }
+
+    .nav-link-pill {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.88rem;
+      padding: 0.4rem 0.85rem;
+      border: 2px solid #000;
+      border-radius: var(--radius-pill);
+      background-color: transparent;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .nav-link-pill:hover {
+      background-color: var(--pop-yellow);
+      box-shadow: 2px 2px 0px #000;
+      transform: translate(-1.5px, -1.5px);
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .sound-btn {
+      background-color: var(--bg-surface);
+      border: 2px solid #000;
+      box-shadow: 2px 2px 0px #000;
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.15s;
+    }
+    .sound-btn:hover {
+      background-color: var(--pop-pink);
+      color: #fff;
+    }
+    .sound-btn.active {
+      background-color: var(--pop-green);
+      color: #000;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background-color: var(--pop-yellow);
+      border: var(--border-black);
+      box-shadow: 2px 2px 0px #000;
+      padding: 0.4rem 0.65rem;
+      font-weight: 900;
+      font-size: 1.25rem;
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+    }
+
+    /* ==========================================================================
+       COMPONENTES NEO-BRUTALISTAS VIBRANTES
+       ========================================================================== */
+    .btn-brutal {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      padding: 0.9rem 1.6rem;
+      border: var(--border-black);
+      border-radius: var(--radius-box);
+      cursor: pointer;
+      box-shadow: var(--shadow-solid);
+      transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s, background-color 0.15s;
+      user-select: none;
+      text-align: center;
+      max-width: 100%;
+      word-break: break-word;
+    }
+
+    .btn-brutal:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .btn-brutal:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #000;
+    }
+
+    .btn-yellow { background-color: var(--pop-yellow); color: #000; }
+    .btn-yellow:hover { background-color: #FFE57F; }
+
+    .btn-cyan { background-color: var(--pop-cyan); color: #000; }
+    .btn-cyan:hover { background-color: #33EBFF; }
+
+    .btn-orange { background-color: var(--pop-orange); color: #fff; }
+    .btn-orange:hover { background-color: #FF6E40; }
+
+    .btn-pink { background-color: var(--pop-pink); color: #fff; }
+    .btn-white { background-color: #fff; color: #000; }
+
+    /* Etiquetas & Stickers */
+    .sticker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border: 2px solid #000;
+      border-radius: var(--radius-pill);
+      box-shadow: 2.5px 2.5px 0px #000;
+      margin-bottom: 0.4rem;
+    }
+
+    .sticker-yellow { background-color: var(--pop-yellow); }
+    .sticker-cyan   { background-color: var(--pop-cyan); }
+    .sticker-orange { background-color: var(--pop-orange); color: #fff; }
+    .sticker-pink   { background-color: var(--pop-pink); color: #fff; }
+    .sticker-green  { background-color: var(--pop-green); }
+    .sticker-white  { background-color: #fff; }
+
+    /* Encabezados de Sección */
+    .section-head {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-top: 0.4rem;
+      margin-bottom: 0.8rem;
+      word-break: break-word;
+    }
+
+    .section-desc {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       SECCIÓN 1: CABECERA (HERO) - VIBRANTE & ALEGRE
+       ========================================================================== */
+    .hero-section {
+      padding: 4.5rem 0 4rem;
+      border-bottom: var(--border-black);
+      background: linear-gradient(135deg, #FFFDF2 0%, #FFF4B8 45%, #E1F9FC 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin: 1rem 0 1.4rem;
+      word-break: break-word;
+    }
+
+    .highlight-yellow {
+      background-color: var(--pop-yellow);
+      padding: 0 0.25em;
+      border: 2px solid #000;
+      box-shadow: 3.5px 3.5px 0px #000;
+      display: inline-block;
+      border-radius: var(--radius-sm);
+      transform: rotate(-1.5deg);
+    }
+
+    .highlight-cyan {
+      background-color: var(--pop-cyan);
+      padding: 0 0.25em;
+      border: 2px solid #000;
+      box-shadow: 3.5px 3.5px 0px #000;
+      display: inline-block;
+      border-radius: var(--radius-sm);
+      transform: rotate(1deg);
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #222;
+      line-height: 1.65;
+      background-color: #fff;
+      border: var(--border-black);
+      box-shadow: var(--shadow-solid-sm);
+      padding: 1.1rem 1.3rem;
+      border-radius: var(--radius-box);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    /* Imagen Neo-Brutalista en Hero */
+    .hero-side-card {
+      background-color: #fff;
+      border: var(--border-black);
+      border-radius: var(--radius-box);
+      box-shadow: var(--shadow-solid-lg);
+      overflow: hidden;
+      transform: rotate(1deg);
+      transition: transform 0.25s ease;
+    }
+    .hero-side-card:hover {
+      transform: rotate(0deg) scale(1.02);
+    }
+
+    .side-card-bar {
+      background-color: var(--pop-pink);
+      border-bottom: var(--border-black);
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 0.95rem;
+    }
+
+    .side-card-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .card-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid #000;
+    }
+    .dot-y { background-color: var(--pop-yellow); }
+    .dot-c { background-color: var(--pop-cyan); }
+    .dot-g { background-color: var(--pop-green); }
+
+    .side-card-content {
+      padding: 1.6rem;
+    }
+
+    .hero-img-wrap {
+      width: 100%;
+      height: 170px;
+      border: 2px solid #000;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      margin-bottom: 1.2rem;
+      box-shadow: 3px 3px 0px #000;
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .meter-item {
+      margin-bottom: 0.85rem;
+    }
+    .meter-item:last-child { margin-bottom: 0; }
+
+    .meter-label-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 0.82rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .meter-rail {
+      height: 16px;
+      background-color: #f0f0f0;
+      border: 2px solid #000;
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+    }
+
+    .meter-value {
+      height: 100%;
+      border-right: 2px solid #000;
+      transition: width 0.6s ease;
+    }
+    .val-orange { background-color: var(--pop-orange); }
+    .val-cyan { background-color: var(--pop-cyan); }
+    .val-yellow { background-color: var(--pop-yellow); }
+
+    .bubble-quote {
+      background-color: var(--pop-yellow);
+      border: 2px solid #000;
+      border-radius: var(--radius-box);
+      padding: 0.85rem;
+      margin-top: 1.1rem;
+      font-weight: 800;
+      font-size: 0.9rem;
+      box-shadow: 2px 2px 0px #000;
+    }
+
+    /* ==========================================================================
+       SECCIÓN 2: TALLERES IT (3 TARJETAS COLORIDAS CON HOVER IMPACTANTE)
+       ========================================================================== */
+    .workshops-section {
+      padding: 5rem 0;
+      border-bottom: var(--border-black);
+      background-color: #fff;
+    }
+
+    .workshops-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .workshop-card {
+      border: var(--border-black);
+      border-radius: var(--radius-box);
+      box-shadow: var(--shadow-solid);
+      padding: 2rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .workshop-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* Colores vibrantes individuales */
+    .card-hw { background-color: var(--pop-yellow); }
+    .card-net { background-color: var(--pop-cyan); }
+    .card-dev { background-color: #FF8A65; }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.3rem;
+    }
+
+    .icon-box {
+      width: 60px;
+      height: 60px;
+      background-color: #fff;
+      border: var(--border-black);
+      border-radius: var(--radius-sm);
+      box-shadow: 3px 3px 0px #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 1.55rem;
+      font-weight: 900;
+      line-height: 1.15;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+
+    .card-text {
+      font-size: 1.02rem;
+      font-weight: 600;
+      line-height: 1.6;
+      margin-bottom: 1.4rem;
+      flex-grow: 1;
+    }
+
+    .card-metrics-box {
+      background-color: #fff;
+      border: 2px solid #000;
+      border-radius: var(--radius-sm);
+      padding: 0.85rem;
+      box-shadow: 2.5px 2.5px 0px #000;
+      margin-bottom: 1.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .metric-line {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.25rem 0;
+      border-bottom: 1px dashed #bbb;
+    }
+    .metric-line:last-child { border-bottom: none; }
+
+    /* Interactive RJ45 Tester inside Redes */
+    .rj45-widget {
+      background-color: #fff;
+      border: 2px solid #000;
+      border-radius: var(--radius-sm);
+      padding: 0.9rem;
+      box-shadow: 2.5px 2.5px 0px #000;
+      margin-bottom: 1.2rem;
+    }
+
+    .tester-btn {
+      width: 100%;
+      background-color: var(--pop-yellow);
+      border: 2px solid #000;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 0.82rem;
+      padding: 0.5rem;
+      cursor: pointer;
+      box-shadow: 2px 2px 0px #000;
+      transition: all 0.15s;
+    }
+    .tester-btn:hover {
+      background-color: var(--pop-orange);
+      color: #fff;
+      transform: translate(-1.5px, -1.5px);
+    }
+
+    .led-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.6rem;
+      background-color: #ececec;
+      padding: 0.4rem;
+      border: 1.5px solid #000;
+      border-radius: var(--radius-sm);
+    }
+
+    .led-node {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      border: 1.5px solid #000;
+      background-color: #ccc;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .led-node.lit {
+      background-color: var(--pop-green);
+      box-shadow: 0 0 8px var(--pop-green);
+      transform: scale(1.15);
+    }
+
+    /* Botón de la tarjeta con hover impactante */
+    .card-action-btn {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 0.88rem;
+      border: 2px solid #000;
+      background-color: #fff;
+      color: #000;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      box-shadow: 3px 3px 0px #000;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+    .card-action-btn:hover {
+      background-color: #000;
+      color: #fff;
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0px var(--pop-yellow);
+    }
+
+    /* ==========================================================================
+       SECCIÓN 3: NOTICIAS DE TALLER REAL (CRÓNICAS REALISTAS CON IMÁGENES & ALT)
+       ========================================================================== */
+    .news-section {
+      padding: 5rem 0;
+      background-color: var(--bg-cream);
+      border-bottom: var(--border-black);
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .news-card {
+      background-color: #fff;
+      border: var(--border-black);
+      border-radius: var(--radius-box);
+      box-shadow: var(--shadow-solid);
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .news-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .news-thumb-box {
+      width: 100%;
+      height: 160px;
+      border: 2px solid #000;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      margin-bottom: 1rem;
+      box-shadow: 2.5px 2.5px 0px #000;
+    }
+
+    .news-thumb-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .news-date {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #555;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .news-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 900;
+      line-height: 1.25;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .news-body {
+      font-size: 0.96rem;
+      color: #222;
+      line-height: 1.6;
+      flex-grow: 1;
+      margin-bottom: 1.1rem;
+    }
+
+    .news-footer-tag {
+      background-color: var(--bg-subtle);
+      border: 1.5px solid #000;
+      border-radius: var(--radius-sm);
+      padding: 0.5rem 0.8rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ==========================================================================
+       SECCIÓN 4: INTERACTIVIDAD JS (MARCADOR DIGITAL RETRO VIERNES 14:00)
+       ========================================================================== */
+    .scoreboard-section {
+      padding: 5rem 0;
+      background-color: var(--pop-yellow);
+      border-bottom: var(--border-black);
+    }
+
+    .scoreboard-panel {
+      background-color: #fff;
+      border: var(--border-black);
+      border-radius: 20px;
+      box-shadow: var(--shadow-solid-lg);
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .scoreboard-badge-top {
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-1.5deg);
+      background-color: var(--pop-orange);
+      color: #fff;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 900;
+      padding: 0.45rem 1.4rem;
+      border: var(--border-black);
+      box-shadow: 3px 3px 0px #000;
+      border-radius: var(--radius-pill);
+    }
+
+    .scoreboard-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      margin-top: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .scoreboard-subtitle {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #444;
+      max-width: 650px;
+      margin: 0 auto 2.2rem;
+    }
+
+    /* Grid de Dígitos */
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      max-width: 850px;
+      margin: 0 auto 2rem;
+    }
+
+    .timer-card {
+      border: var(--border-black);
+      border-radius: var(--radius-box);
+      box-shadow: var(--shadow-solid);
+      padding: 1.4rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.15s;
+    }
+    .timer-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .t-days  { background-color: var(--pop-cyan); }
+    .t-hours { background-color: var(--pop-pink); color: #fff; }
+    .t-mins  { background-color: var(--pop-yellow); }
+    .t-secs  { background-color: var(--pop-orange); color: #fff; }
+
+    .timer-digit {
+      font-family: var(--font-mono);
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .timer-label {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Barra de Progreso Semanal */
+    .progress-box {
+      max-width: 850px;
+      margin: 0 auto 2rem;
+      background-color: var(--bg-subtle);
+      border: var(--border-black);
+      border-radius: var(--radius-box);
+      padding: 1.2rem;
+      box-shadow: var(--shadow-solid-sm);
+    }
+
+    .progress-meta-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.95rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .progress-bar-slot {
+      height: 24px;
+      background-color: #fff;
+      border: 2.5px solid #000;
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+    }
+
+    .progress-bar-fluid {
+      height: 100%;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--pop-green),
+        var(--pop-green) 12px,
+        var(--pop-yellow) 12px,
+        var(--pop-yellow) 24px
+      );
+      border-right: 2.5px solid #000;
+      transition: width 0.6s ease;
+    }
+
+    /* Alerta de fin de semana activo */
+    .weekend-banner {
+      display: none;
+      background-color: var(--pop-green);
+      border: var(--border-black);
+      box-shadow: var(--shadow-solid);
+      border-radius: var(--radius-box);
+      padding: 1.4rem;
+      margin-bottom: 2rem;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.25rem;
+    }
+    .weekend-banner.active { display: block; }
+
+    /* ==========================================================================
+       SECCIÓN 5: FORMULARIO SOS (VALIDADO CON REQUIRED) Y FOOTER PROFESIONAL
+       ========================================================================== */
+    .contact-section {
+      padding: 5rem 0;
+      background-color: var(--pop-cyan);
+      border-bottom: var(--border-black);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    .contact-card-info {
+      background-color: #fff;
+      border: var(--border-black);
+      border-radius: var(--radius-box);
+      box-shadow: var(--shadow-solid);
+      padding: 2.2rem;
+    }
+
+    .student-id-badge {
+      background-color: var(--pop-yellow);
+      border: 2px solid #000;
+      border-radius: var(--radius-box);
+      padding: 1.2rem;
+      margin-top: 1.5rem;
+      box-shadow: 3px 3px 0px #000;
+      font-family: var(--font-heading);
+      font-weight: 800;
+    }
+
+    .badge-data-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      border-bottom: 1.5px dashed #000;
+      font-size: 0.92rem;
+    }
+    .badge-data-row:last-child { border-bottom: none; }
+
+    /* Formulario estilizado Neo-Brutalista */
+    .sos-form-wrapper {
+      background-color: #fff;
+      border: var(--border-black);
+      border-radius: 20px;
+      box-shadow: var(--shadow-solid-lg);
+      padding: 2.5rem;
+    }
+
+    .form-heading {
+      font-family: var(--font-heading);
+      font-size: 1.85rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
+    }
+
+    .form-field {
+      margin-bottom: 1.35rem;
+    }
+
+    .field-label {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .field-input {
+      width: 100%;
+      background-color: #fff;
+      border: var(--border-black);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1rem;
+      font-family: var(--font-main);
+      font-size: 0.98rem;
+      font-weight: 700;
+      outline: none;
+      box-shadow: 2.5px 2.5px 0px #000;
+      transition: transform 0.15s, box-shadow 0.15s, background-color 0.15s;
+    }
+
+    .field-input:focus {
+      background-color: #FFFDE0;
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0px #000;
+      border-color: #000;
+    }
+
+    textarea.field-input {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .form-alert-msg {
+      display: none;
+      background-color: var(--pop-green);
+      border: var(--border-black);
+      border-radius: var(--radius-sm);
+      padding: 1.1rem;
+      margin-top: 1.25rem;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      box-shadow: 2.5px 2.5px 0px #000;
+    }
+    .form-alert-msg.show { display: block; }
+
+    /* ==========================================================================
+       FOOTER PROFESIONAL CON ENLACES EXTERNOS SEGUROS
+       ========================================================================== */
+    .site-footer {
+      background-color: #FFFDF2;
+      padding: 4.5rem 0 2.5rem;
+      width: 100%;
+    }
+
+    .footer-columns {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1.1fr;
+      gap: 2.8rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .footer-title-badge {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      display: inline-block;
+      background-color: var(--pop-yellow);
+      border: 2px solid #000;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-sm);
+      box-shadow: 2px 2px 0px #000;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background-color: #fff;
+      border: 2px solid #000;
+      box-shadow: 2.5px 2.5px 0px #000;
+      padding: 0.45rem 0.9rem;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.9rem;
+      transition: all 0.15s;
+    }
+    .footer-btn-link:hover {
+      background-color: var(--pop-cyan);
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0px #000;
+    }
+
+    .footer-sub-bar {
+      border-top: var(--border-black);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    /* Toast emergente Neo-Brutalista */
+    .toast-box {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background-color: var(--pop-yellow);
+      border: var(--border-black);
+      border-radius: var(--radius-box);
+      box-shadow: var(--shadow-solid);
+      padding: 0.9rem 1.3rem;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 0.95rem;
+      z-index: 100000;
+      transform: translateY(200%);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      max-width: 90vw;
+    }
+    .toast-box.visible {
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE ESTRICTO (ESPECIAL 390PX MÓVIL)
+       ========================================================================== */
+    @media (max-width: 992px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .workshops-grid { grid-template-columns: 1fr; }
+      .news-grid { grid-template-columns: 1fr; }
+      .contact-layout { grid-template-columns: 1fr; }
+      .footer-columns { grid-template-columns: 1fr; gap: 2.2rem; }
+      .timer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu { display: none; }
+      .mobile-toggle { display: block; }
+      .nav-menu.active-menu {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background-color: var(--pop-yellow);
+        border-bottom: var(--border-black);
+        padding: 1.5rem;
+        gap: 0.9rem;
+      }
+      .btn-brutal { width: 100%; }
+      .hero-cta-row { flex-direction: column; width: 100%; }
+    }
+
+    /* Ajuste milimétrico para 390px (iPhone 12/13/14) */
+    @media (max-width: 420px) {
+      .container { padding: 0 0.85rem; }
+      .hero-section { padding: 3rem 0 2.5rem; }
+      .scoreboard-panel { padding: 2.2rem 1rem; }
+      .sos-form-wrapper { padding: 1.6rem 1rem; }
+      .timer-grid { gap: 0.65rem; }
+      .timer-digit { font-size: 2.2rem; }
+      .brand-info h1 { font-size: 1.05rem; }
+      .hero-title { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Lienzo interactivo para confeti -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Marquesina ticker superior -->
+  <div class="marquee-wrapper">
+    <div class="marquee-track">
+      <span>⚡ CF SOMORROSTRO (SAN JUAN 10, MUSKIZ)</span>
+      <span class="star">✦</span>
+      <span>RUTA B: MANUAL DE SUPERVIVENCIA IT (1º FPB)</span>
+      <span class="star">✦</span>
+      <span>08:00 AM EN LA MARQUESINA DEL BIZKAIBUS</span>
+      <span class="star">✦</span>
+      <span>VIERNES 14:00 MODO FIN DE SEMANA</span>
+      <span class="star">✦</span>
+      <span>NORMA T568B SAGRADA</span>
+      <span class="star">✦</span>
+      <span>CAFÉ VOLCÁNICO A 50 CÉNTIMOS</span>
+      <span class="star">✦</span>
+    </div>
+    <div class="marquee-track" aria-hidden="true">
+      <span>⚡ CF SOMORROSTRO (SAN JUAN 10, MUSKIZ)</span>
+      <span class="star">✦</span>
+      <span>RUTA B: MANUAL DE SUPERVIVENCIA IT (1º FPB)</span>
+      <span class="star">✦</span>
+      <span>08:00 AM EN LA MARQUESINA DEL BIZKAIBUS</span>
+      <span class="star">✦</span>
+      <span>VIERNES 14:00 MODO FIN DE SEMANA</span>
+      <span class="star">✦</span>
+      <span>NORMA T568B SAGRADA</span>
+      <span class="star">✦</span>
+      <span>CAFÉ VOLCÁNICO A 50 CÉNTIMOS</span>
+      <span class="star">✦</span>
+    </div>
+  </div>
+
+  <!-- Navbar Neo-Brutalista -->
+  <header class="site-nav">
+    <div class="container nav-content">
+      <a href="#hero" class="nav-brand">
+        <div class="brand-box">S</div>
+        <div class="brand-info">
+          <h1>CF Somorrostro</h1>
+          <span class="brand-badge">RUTA B // 1º FPB</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#hero" class="nav-link-pill">⚡ INICIO</a></li>
+          <li><a href="#talleres" class="nav-link-pill">🛠️ TALLERES</a></li>
+          <li><a href="#noticias" class="nav-link-pill">📢 NOTICIAS AULA</a></li>
+          <li><a href="#contador" class="nav-link-pill">⏰ MODO VIERNES</a></li>
+          <li><a href="#contacto" class="nav-link-pill">📬 BUZÓN SOS</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-controls">
+        <button class="sound-btn" id="audioBtn" title="Activar/Desactivar efectos pop">
+          <span id="audioIcon">🔊</span>
+          <span id="audioStatus">AUDIO: OFF</span>
+        </button>
+        <button class="mobile-toggle" id="menuToggle" aria-label="Abrir Menú de Navegación">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       SECCIÓN 1: CABECERA (HERO) - VIBRANTE & ALEGRE
+       ======================================================================== -->
+  <section class="hero-section" id="hero">
+    <div class="container hero-grid">
+      <div>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="sticker sticker-yellow">⚡ RUTA B // VISIÓN REALISTA</span>
+          <span class="sticker sticker-cyan">📍 SAN JUAN 10, MUSKIZ</span>
+          <span class="sticker sticker-pink">1º FPB INFORMÁTICA</span>
+        </div>
+
+        <h2 class="hero-title">
+          SI SOBREVIVES A LAS <span class="highlight-yellow">8:00 AM</span> Y A CRIMPAR CABLES, <span class="highlight-cyan">EL MUNDO IT ES TUYO.</span>
+        </h2>
+
+        <p class="hero-subtitle">
+          Manual no oficial de supervivencia para el <strong>Centro de Formación Somorrostro</strong>. Donde el viento del Cantábrico te espabila en la marquesina de San Juan antes de que el bus A3336 asome, los hilos de red se enredan por arte de magia y cada segundo cuenta hasta las <strong>14:00 del viernes</strong>.
+        </p>
+
+        <div class="hero-cta-row">
+          <a href="#contador" class="btn-brutal btn-yellow" id="btnCountdownHero">
+            🎉 ACTIVAR CUENTA ATRÁS DEL VIERNES
+          </a>
+          <a href="#noticias" class="btn-brutal btn-cyan">
+            📢 VER NOTICIAS DEL AULA
+          </a>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="sticker sticker-white">🚌 Bizkaibus A3336</span>
+          <span class="sticker sticker-white">☕ Café Volcánico 0.50€</span>
+          <span class="sticker sticker-white">🔌 Norma T568B</span>
+        </div>
+      </div>
+
+      <!-- Tarjeta Comic Hero con Monitores de Estrés Escolar e Imagen con ALT -->
+      <div class="hero-side-card">
+        <div class="side-card-bar">
+          <div class="side-card-dots">
+            <span class="card-dot dot-y"></span>
+            <span class="card-dot dot-c"></span>
+            <span class="card-dot dot-g"></span>
+          </div>
+          <span>MONITOR DEL ALUMNO // LIVE</span>
+        </div>
+
+        <div class="side-card-content">
+          <div class="hero-img-wrap">
+            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop" alt="Estudiantes en el taller de montaje de componentes informáticos en Somorrostro" loading="lazy">
+          </div>
+
+          <div class="meter-item">
+            <div class="meter-label-row">
+              <span>NIVEL DE ENERGÍA (08:00 AM):</span>
+              <strong style="color: var(--pop-orange);">14% (CRÍTICO)</strong>
+            </div>
+            <div class="meter-rail">
+              <div class="meter-value val-orange" style="width: 14%;"></div>
+            </div>
+          </div>
+
+          <div class="meter-item">
+            <div class="meter-label-row">
+              <span>FRÍO EN LA MARQUESINA DE MUSKIZ:</span>
+              <strong style="color: var(--pop-cyan);">96% ÁRTICO</strong>
+            </div>
+            <div class="meter-rail">
+              <div class="meter-value val-cyan" style="width: 96%;"></div>
+            </div>
+          </div>
+
+          <div class="meter-item">
+            <div class="meter-label-row">
+              <span>GANAS DEL TIMBRE DEL VIERNES 14:00:</span>
+              <strong>999% MÁXIMO</strong>
+            </div>
+            <div class="meter-rail">
+              <div class="meter-value val-yellow" style="width: 100%;"></div>
+            </div>
+          </div>
+
+          <div class="bubble-quote">
+            💬 <em>"Si crimpas el latiguillo a la primera y el tester da 8 luces verdes, no toques nada más. Retírate invicto."</em>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECCIÓN 2: TALLERES IT (3 TARJETAS COLORIDAS CON HOVER IMPACTANTE)
+       ======================================================================== -->
+  <section class="workshops-section" id="talleres">
+    <div class="container">
+      <div class="section-head">
+        <span class="sticker sticker-pink">ÁREAS DE ENTRENAMIENTO TÉCNICO</span>
+        <h2 class="section-title">LOS 3 TALLERES DE INFORMÁTICA</h2>
+        <p class="section-desc">
+          Tres escenarios de batalla donde la paciencia, el tester de red y los destornilladores imantados forjan al técnico todoterreno de Somorrostro.
+        </p>
+      </div>
+
+      <div class="workshops-grid">
+        <!-- Tarjeta 1: Hardware (Amarillo Brillante #FFDE59) -->
+        <article class="workshop-card card-hw">
+          <div class="card-top">
+            <div class="icon-box">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" role="img" aria-label="Icono de Procesador y Montaje de Hardware"><title>Montaje de Hardware</title><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+            </div>
+            <span class="sticker sticker-white">MÓDULO 01</span>
+          </div>
+
+          <h3 class="card-title">Montaje y Componentes</h3>
+          <p class="card-text">
+            Aprende a buscar el tornillo M.2 milimétrico que cayó en el fondo de la torre, la dosis exacta de pasta térmica y la plegaria final al presionar el pulsador frontal de la caja.
+          </p>
+
+          <div class="card-metrics-box">
+            <div class="metric-line">
+              <span>Tornillos tragados por el suelo:</span>
+              <strong style="color: var(--pop-orange);">99%</strong>
+            </div>
+            <div class="metric-line">
+              <span>Miedo a doblar pines CPU:</span>
+              <strong>MÁXIMO</strong>
+            </div>
+            <div class="metric-line">
+              <span>Arranque a la primera:</span>
+              <strong style="color: #008744;">MILAGRO</strong>
+            </div>
+          </div>
+
+          <button class="card-action-btn" onclick="triggerCardSound('hw')">
+            <span>⚡ EXPLORAR PROTOCOLO HW</span>
+          </button>
+        </article>
+
+        <!-- Tarjeta 2: Redes Locales (Cian #00E5FF) -->
+        <article class="workshop-card card-net">
+          <div class="card-top">
+            <div class="icon-box">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" role="img" aria-label="Icono de Switch y Redes Locales RJ45"><title>Redes Locales</title><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line><line x1="12" y1="10" x2="12" y2="14"></line></svg>
+            </div>
+            <span class="sticker sticker-white">MÓDULO 02</span>
+          </div>
+
+          <h3 class="card-title">Redes Locales & RJ45</h3>
+          <p class="card-text">
+            <strong>Blanco-Naranja, Naranja, Blanco-Verde, Azul...</strong> El mantra sagrado T568B. Un milímetro de fallo al meter los cables en el conector transparente y el tester te pintará luces rojas de condena.
+          </p>
+
+          <!-- Comprobador Interactivo RJ45 con 8 LEDs -->
+          <div class="rj45-widget">
+            <button class="tester-btn" onclick="testRJ45Leds()">
+              ⚡ PROBAR TESTER RJ45 (8 PINES)
+            </button>
+            <div class="led-row">
+              <span class="led-node" id="n1">1</span>
+              <span class="led-node" id="n2">2</span>
+              <span class="led-node" id="n3">3</span>
+              <span class="led-node" id="n4">4</span>
+              <span class="led-node" id="n5">5</span>
+              <span class="led-node" id="n6">6</span>
+              <span class="led-node" id="n7">7</span>
+              <span class="led-node" id="n8">8</span>
+            </div>
+          </div>
+
+          <button class="card-action-btn" onclick="triggerCardSound('net')">
+            <span>🔌 NORMATIVA T568B STRICT</span>
+          </button>
+        </article>
+
+        <!-- Tarjeta 3: Desarrollo Web (Naranja Vibrante #FF5722) -->
+        <article class="workshop-card card-dev">
+          <div class="card-top">
+            <div class="icon-box">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" role="img" aria-label="Icono de Código y Desarrollo Web"><title>Desarrollo Web</title><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </div>
+            <span class="sticker sticker-white">MÓDULO 03</span>
+          </div>
+
+          <h3 class="card-title">Desarrollo Web & Código</h3>
+          <p class="card-text">
+            Construye interfaces llamativas que funcionan a la perfección en local hasta el segundo exacto en que el profesor asoma la cabeza por tu monitor. Ama el <code>console.log()</code> sobre todas las cosas.
+          </p>
+
+          <div class="card-metrics-box">
+            <div class="metric-line">
+              <span>Pestañas StackOverflow:</span>
+              <strong style="color: var(--pop-orange);">48 abiertas</strong>
+            </div>
+            <div class="metric-line">
+              <span>"En mi localhost iba":</span>
+              <strong>100% verídico</strong>
+            </div>
+            <div class="metric-line">
+              <span>Centrar div con flexbox:</span>
+              <strong style="color: #008744;">LOGRADO</strong>
+            </div>
+          </div>
+
+          <button class="card-action-btn" onclick="triggerCardSound('dev')">
+            <span>💻 LANZAR INSPECTOR DE BUGS</span>
+          </button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECCIÓN 3: NOTICIAS DE TALLER REAL (CRÓNICAS REALISTAS CON IMÁGENES & ALT)
+       ======================================================================== -->
+  <section class="news-section" id="noticias">
+    <div class="container">
+      <div class="section-head">
+        <span class="sticker sticker-orange">CRÓNICAS DIRECTAS DE CLASE</span>
+        <h2 class="section-title">NOTICIAS DE TALLER REAL</h2>
+        <p class="section-desc">
+          Nada de notas de prensa institucionales aburridas: aquí está la auténtica actualidad de los talleres de informática de Somorrostro.
+        </p>
+      </div>
+
+      <div class="news-grid">
+        <!-- Noticia 1: Pasta térmica derramada -->
+        <article class="news-card">
+          <div class="news-thumb-box">
+            <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=600&auto=format&fit=crop" alt="Placa base y procesador con pasta térmica en el taller de hardware" loading="lazy">
+          </div>
+          <span class="news-date">📅 HOY // 09:15 AM - TALLER DE HARDWARE</span>
+          <span class="sticker sticker-yellow" style="width: fit-content;">DESASTRE TÉRMICO</span>
+          <h3 class="news-title">Catástrofe en la Mesa 4: Medio Tubo de Pasta en el Socket</h3>
+          <p class="news-body">
+            Un alumno de primero confundió la recomendación de "una gota del tamaño de un guisante" con vaciar una jeringa completa de silicona conductora. La placa base ahora parece un volcán de nata montada y tres alumnos intentan limpiar los pines con bastoncillos y rezos en euskera.
+          </p>
+          <div class="news-footer-tag">
+            <span>ESTADO: PLACA EN LA UCI</span>
+            <span>PACIENCIA: 2%</span>
+          </div>
+        </article>
+
+        <!-- Noticia 2: Cable crimpado al revés -->
+        <article class="news-card">
+          <div class="news-thumb-box">
+            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=600&auto=format&fit=crop" alt="Cables de red UTP y conectores RJ45 para crimpar en el rack" loading="lazy">
+          </div>
+          <span class="news-date">📅 AYER // 11:40 AM - LABORATORIO DE REDES</span>
+          <span class="sticker sticker-cyan" style="width: fit-content;">MISTERIO UTP</span>
+          <h3 class="news-title">El Cable Maldito: 15 Metros Invertidos de Extremo a Extremo</h3>
+          <p class="news-body">
+            Tras 40 minutos pelando manguera de cable gris y respirando hondo, el tester arrojó un espectáculo de luces psicodélico: el pin 1 conectaba con el 8 y el verde intercambió lugar con el marrón. El grupo unánimemente decidió declarar que *"el switch del aula está embrujado"*.
+          </p>
+          <div class="news-footer-tag">
+            <span>ESTADO: TIJERA AL LATIGUILLO</span>
+            <span>CULPABLE: EL PATCH PANEL</span>
+          </div>
+        </article>
+
+        <!-- Noticia 3: Bugs en Python / Div que explota -->
+        <article class="news-card">
+          <div class="news-thumb-box">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop" alt="Pantalla con código fuente de programación y depuración de errores" loading="lazy">
+          </div>
+          <span class="news-date">📅 ESTA SEMANA // 13:10 PM - AULA DE SOFTWARE</span>
+          <span class="sticker sticker-pink" style="width: fit-content;">CODE PANIC</span>
+          <h3 class="news-title">Emergencia Web: Un Div con Position Absolute invadió el Menú</h3>
+          <p class="news-body">
+            Un intento desesperado por maquetar la práctica sin usar Grid provocó que el botón de login saliera flotando fuera de la pantalla. El código contenía 23 líneas consecutivas de <code>console.log('por favor entra aquí')</code> antes del temido pantallazo rojo del navegador.
+          </p>
+          <div class="news-footer-tag">
+            <span>ESTADO: REFACTORIZANDO A CIEGAS</span>
+            <span>CAFÉ CONSUMIDO: 4 TAZAS</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECCIÓN 4: INTERACTIVIDAD JS (MARCADOR DIGITAL RETRO VIERNES 14:00)
+       ======================================================================== -->
+  <section class="scoreboard-section" id="contador">
+    <div class="container">
+      <div class="scoreboard-panel">
+        <div class="scoreboard-badge-top">
+          ⚡ PROTOCOLO MODO FIN DE SEMANA ⚡
+        </div>
+
+        <h2 class="scoreboard-title">
+          CUENTA ATRÁS HACIA EL VIERNES A LAS 14:00
+        </h2>
+        <p class="scoreboard-subtitle">
+          El momento cumbre de la semana escolar en San Juan 10: las bobinas de cable descansan, las máquinas virtuales se apagan y los alumnos respiran en libertad.
+        </p>
+
+        <!-- Alerta de fin de semana activo -->
+        <div class="weekend-banner" id="weekendBanner">
+          🎉 ¡ESTADO: MODO FIN DE SEMANA ACTIVO! 🎉<br>
+          <span style="font-size: 0.95rem; font-weight: 700;">¡Has superado la semana en Somorrostro! Guarda los latiguillos y disfruta del merecido descanso.</span>
+        </div>
+
+        <!-- Dígitos del Marcador Digital Retro -->
+        <div class="timer-grid">
+          <div class="timer-card t-days">
+            <span class="timer-digit" id="timerDays">00</span>
+            <span class="timer-label">Días</span>
+          </div>
+
+          <div class="timer-card t-hours">
+            <span class="timer-digit" id="timerHours">00</span>
+            <span class="timer-label">Horas</span>
+          </div>
+
+          <div class="timer-card t-mins">
+            <span class="timer-digit" id="timerMins">00</span>
+            <span class="timer-label">Minutos</span>
+          </div>
+
+          <div class="timer-card t-secs">
+            <span class="timer-digit" id="timerSecs">00</span>
+            <span class="timer-label">Segundos</span>
+          </div>
+        </div>
+
+        <!-- Barra de progreso semanal -->
+        <div class="progress-box">
+          <div class="progress-meta-row">
+            <span>PROGRESO ESCOLAR SEMANAL (Lunes 08:00 ➔ Viernes 14:00)</span>
+            <span id="progressTxt" style="color: var(--pop-orange); font-size: 1.05rem;">0%</span>
+          </div>
+          <div class="progress-bar-slot">
+            <div class="progress-bar-fluid" id="progressBar" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <button class="btn-brutal btn-orange" onclick="simulateFridayAlarm()">
+          🎊 PROBAR ALARMA DEL VIERNES (CONFETI & FANFARRIA POP)
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECCIÓN 5: FORMULARIO SOS (VALIDADO CON REQUIRED) Y FOOTER PROFESIONAL
+       ======================================================================== -->
+  <section class="contact-section" id="contacto">
+    <div class="container contact-layout">
+      <!-- Columna Izquierda: Información de Contacto -->
+      <div class="contact-card-info">
+        <span class="sticker sticker-orange">PARTE DE SOCORRO ESCOLAR</span>
+        <h2 style="font-family: var(--font-heading); font-size: 2.1rem; font-weight: 900; line-height: 1.1; margin: 0.8rem 0; text-transform: uppercase;">
+          ¿CRISIS EN EL TALLER O EN EL CÓDIGO?
+        </h2>
+        <p style="font-size: 1.05rem; font-weight: 600; line-height: 1.6; margin-bottom: 1.2rem;">
+          ¿Se partió la pestaña del conector RJ45 dentro de la roseta? ¿El Bizkaibus no frenó en San Juan? ¿Tu código de Python tiene un bucle infinito que quema la CPU? Envía un parte directo a mi buzón de estudiante.
+        </p>
+
+        <div class="student-id-badge">
+          <div class="badge-data-row">
+            <span>ALUMNO DESARROLLADOR:</span>
+            <strong>Jareth Rosero</strong>
+          </div>
+          <div class="badge-data-row">
+            <span>CURSO / CENTRO:</span>
+            <strong>1º FPB Informática · CF Somorrostro</strong>
+          </div>
+          <div class="badge-data-row">
+            <span>CORREO DE ESTUDIANTE:</span>
+            <strong style="color: var(--pop-orange);">jareth.rosero08@somorrostro.eus</strong>
+          </div>
+          <div class="badge-data-row">
+            <span>SEDE OFICIAL:</span>
+            <strong>San Juan 10, Muskiz</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Formulario Estilizado con Hover/Focus y Required Estricto -->
+      <div class="sos-form-wrapper">
+        <h3 class="form-heading">TRANSMISIÓN DE INCIDENCIA</h3>
+        <p style="font-weight: 700; color: #555; margin-bottom: 1.6rem; font-size: 0.95rem;">
+          Conexión directa vía correo de estudiante institucional
+        </p>
+
+        <form id="sosForm" action="mailto:jareth.rosero08@somorrostro.eus" method="POST" enctype="text/plain" onsubmit="handleFormSend(event)">
+          <div class="form-field">
+            <label for="studentName" class="field-label">Nombre del Alumno / Operador *</label>
+            <input type="text" id="studentName" name="studentName" class="field-input" placeholder="Ej: Mikel de 1º FPB" required minlength="2">
+          </div>
+
+          <div class="form-field">
+            <label for="studentMail" class="field-label">Tu Correo Institucional *</label>
+            <input type="email" id="studentMail" name="studentMail" class="field-input" placeholder="tu.nombre@somorrostro.eus" required>
+          </div>
+
+          <div class="form-field">
+            <label for="incidentCategory" class="field-label">Categoría del Desastre *</label>
+            <select id="incidentCategory" name="incidentCategory" class="field-input" required>
+              <option value="" disabled selected>-- Selecciona el tipo de desastre técnico * --</option>
+              <option value="crimpadora">Crimpadora defectuosa / Cable machacado</option>
+              <option value="tornillo">Tornillo microscópico tragado por la mesa</option>
+              <option value="bus">Bizkaibus pasó de largo en San Juan</option>
+              <option value="cafe">Máquina de café se quedó mis 50 céntimos</option>
+              <option value="python">Bucle infinito en Python / Div que no centra</option>
+              <option value="general">Consulta general sobre la guía de supervivencia</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="incidentDetail" class="field-label">Descripción de la Tragedia *</label>
+            <textarea id="incidentDetail" name="incidentDetail" class="field-input" placeholder="Explica detalladamente qué ocurrió con el cable, el bus o el código..." required minlength="5"></textarea>
+          </div>
+
+          <button type="submit" class="btn-brutal btn-yellow" style="width: 100%;">
+            🚀 ENVIAR PARTE A MI CORREO DE ESTUDIANTE
+          </button>
+
+          <div class="form-alert-msg" id="formSentAlert">
+            🎉 <strong>¡PARTE DE INCIDENCIA PREPARADO CON ÉXITO!</strong><br>
+            Se ha generado el enlace directo hacia <code>jareth.rosero08@somorrostro.eus</code>. ¡Mucho ánimo, que el viernes a las 14:00 ya asoma!
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       FOOTER PROFESIONAL CON ENLACES EXTERNOS SEGUROS
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-columns">
+        <!-- Columna 1: CF Somorrostro -->
+        <div>
+          <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.8rem;">
+            <div class="brand-box" style="width: 38px; height: 38px; font-size: 1.2rem;">S</div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 900;">CF SOMORROSTRO</h3>
+          </div>
+          <p style="font-weight: 600; line-height: 1.6; margin-bottom: 1.2rem; font-size: 0.95rem;">
+            Rediseño completo de la <strong>Ruta B (Manual de Supervivencia IT)</strong> para 1º FPB. Una visión alegre, realista, desenfadada y brutalista para alegrar el día a día escolar.
+          </p>
+          <span class="sticker sticker-yellow">SAN JUAN 10, MUSKIZ</span>
+        </div>
+
+        <!-- Columna 2: Sede Real -->
+        <div>
+          <span class="footer-title-badge">📍 SEDE REAL DEL CENTRO</span>
+          <div style="font-size: 0.95rem; font-weight: 600; line-height: 1.7;">
+            <strong>Centro de Formación Somorrostro</strong><br>
+            San Juan 10<br>
+            48550 Muskiz, Bizkaia<br>
+            País Vasco (España)<br>
+            <span style="display: inline-block; margin-top: 0.35rem; font-family: var(--font-mono); font-size: 0.78rem; background: var(--pop-cyan); padding: 0.15rem 0.5rem; border: 1.5px solid #000; border-radius: 4px;">
+              Parada Bizkaibus: San Juan (Muskiz)
+            </span>
+          </div>
+        </div>
+
+        <!-- Columna 3: Autoría del Estudiante (Enlaces externos con target="_blank" rel="noopener noreferrer") -->
+        <div>
+          <span class="footer-title-badge">👨‍💻 AUTORÍA ESTUDIANTE</span>
+          <ul class="footer-links">
+            <li>
+              <div style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 900;">
+                Jareth Rosero
+              </div>
+              <div style="font-size: 0.8rem; font-weight: 700; color: #555; font-family: var(--font-mono);">
+                Estudiante de Informática (1º FPB) / Frontend Dev
+              </div>
+            </li>
+            <li>
+              <a href="https://github.com/jareth-rosero" target="_blank" rel="noopener noreferrer" class="footer-btn-link" id="footerGithubLink" aria-label="Abrir perfil de GitHub de Jareth Rosero en nueva pestaña">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Logo de GitHub"><title>GitHub</title><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                Mi GitHub: github.com/jareth-rosero
+              </a>
+            </li>
+            <li>
+              <a href="https://jareth-rosero.dev" target="_blank" rel="noopener noreferrer" class="footer-btn-link" id="footerPortfolioLink" aria-label="Abrir portfolio personal de Jareth Rosero en nueva pestaña">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" role="img" aria-label="Icono de Portfolio Web"><title>Portfolio</title><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                Mi Portfolio: jareth-rosero.dev
+              </a>
+            </li>
+            <li>
+              <a href="https://reto-rediseno-somorrostro.vercel.app" target="_blank" rel="noopener noreferrer" class="footer-btn-link" id="footerVercelLink" aria-label="Ver despliegue en Vercel en nueva pestaña">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Logo de Vercel"><title>Vercel</title><path d="M24 22.525H0l12-21.05 12 21.05z"/></svg>
+                Demo en Vercel: vercel.app
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-sub-bar">
+        <div>
+          © 2026 <strong>CF Somorrostro — Manual de Supervivencia IT (1º FPB)</strong>. Diseñado con orgullo neo-brutalista por <strong>Jareth Rosero</strong>.
+        </div>
+        <div>
+          <span>San Juan 10, Muskiz</span> ✦ <a href="#hero" style="text-decoration: underline;">Volver a la cima ↑</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notificador -->
+  <div class="toast-box" id="toastBox">
+    <span id="toastMsg">Notificación del sistema</span>
+  </div>
+
+  <!-- ========================================================================
+       JAVASCRIPT: CUENTA ATRÁS, CONFETI, AUDIO POP & TESTER RJ45
+       ======================================================================== -->
+  <script>
+    /* --------------------------------------------------------------------------
+       1. EFECTOS DE SONIDO POP (WEB AUDIO API - SIN DEPENDENCIAS)
+       -------------------------------------------------------------------------- */
+    let audioReady = false;
+    let audioContext = null;
+
+    function getAudioContext() {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioContext;
+    }
+
+    function playNote(freq = 600, duration = 0.08, type = 'sine') {
+      if (!audioReady) return;
+      try {
+        const ctx = getAudioContext();
+        if (ctx.state === 'suspended') {
+          ctx.resume();
+        }
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.12, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.warn('Audio no disponible:', e);
+      }
+    }
+
+    const audioBtn = document.getElementById('audioBtn');
+    const audioStatus = document.getElementById('audioStatus');
+
+    audioBtn.addEventListener('click', () => {
+      audioReady = !audioReady;
+      if (audioReady) {
+        getAudioContext();
+        audioBtn.classList.add('active');
+        audioStatus.textContent = 'AUDIO: ON';
+        playNote(520, 0.1);
+        setTimeout(() => playNote(1040, 0.15), 110);
+        showToast('🔊 Sonidos interactivos activados');
+      } else {
+        audioBtn.classList.remove('active');
+        audioStatus.textContent = 'AUDIO: OFF';
+        showToast('Audio desactivado');
+      }
+    });
+
+    window.triggerCardSound = function(type) {
+      if (type === 'hw') {
+        playNote(440, 0.1, 'triangle');
+        showToast('⚙ Módulo Montaje: ¡Cuidado con doblar pines!');
+      } else if (type === 'net') {
+        playNote(660, 0.1, 'square');
+        showToast('🔌 Módulo Redes: Norma T568B activa.');
+      } else if (type === 'dev') {
+        playNote(880, 0.1, 'sawtooth');
+        showToast('💻 Módulo Dev: ¡Recuerda el punto y coma!');
+      }
+    };
+
+    /* --------------------------------------------------------------------------
+       2. CUENTA ATRÁS EN VIVO AL VIERNES A LAS 14:00
+       -------------------------------------------------------------------------- */
+    function getNextFridayTwoPM(baseDate = new Date()) {
+      const target = new Date(baseDate);
+      const day = baseDate.getDay(); // 0 Dom, 1 Lun, 5 Vie, 6 Sab
+      const hour = baseDate.getHours();
+      const min = baseDate.getMinutes();
+
+      if (day === 5 && (hour < 14 || (hour === 14 && min === 0 && baseDate.getSeconds() === 0))) {
+        target.setHours(14, 0, 0, 0);
+        return target;
+      }
+
+      let daysToAdd = (5 - day + 7) % 7;
+      if (daysToAdd === 0) {
+        daysToAdd = 7;
+      }
+      target.setDate(baseDate.getDate() + daysToAdd);
+      target.setHours(14, 0, 0, 0);
+      return target;
+    }
+
+    function getMondayStart(baseDate = new Date()) {
+      const m = new Date(baseDate);
+      const day = baseDate.getDay();
+      const diff = day === 0 ? 6 : day - 1;
+      m.setDate(baseDate.getDate() - diff);
+      m.setHours(8, 0, 0, 0);
+      return m;
+    }
+
+    const timerDays = document.getElementById('timerDays');
+    const timerHours = document.getElementById('timerHours');
+    const timerMins = document.getElementById('timerMins');
+    const timerSecs = document.getElementById('timerSecs');
+    const weekendBanner = document.getElementById('weekendBanner');
+    const progressBar = document.getElementById('progressBar');
+    const progressTxt = document.getElementById('progressTxt');
+
+    function updateLiveCountdown() {
+      const now = new Date();
+      const day = now.getDay();
+      const hour = now.getHours();
+
+      // Detección de fin de semana escolar: Viernes 14:00 hasta Lunes 07:59
+      const isWeekendReal = (day === 5 && hour >= 14) || (day === 6) || (day === 0) || (day === 1 && hour < 8);
+
+      const target = getNextFridayTwoPM(now);
+      const diff = target - now;
+
+      if (diff <= 0 || isWeekendReal) {
+        weekendBanner.classList.add('active');
+        timerDays.textContent = '00';
+        timerHours.textContent = '00';
+        timerMins.textContent = '00';
+        timerSecs.textContent = '00';
+        progressBar.style.width = '100%';
+        progressTxt.textContent = '100% [LIBERTAD TOTAL]';
+        return;
+      }
+
+      weekendBanner.classList.remove('active');
+
+      const totalSec = Math.floor(diff / 1000);
+      const d = Math.floor(totalSec / (3600 * 24));
+      const h = Math.floor((totalSec % (3600 * 24)) / 3600);
+      const m = Math.floor((totalSec % 3600) / 60);
+      const s = Math.floor(totalSec % 60);
+
+      timerDays.textContent = String(d).padStart(2, '0');
+      timerHours.textContent = String(h).padStart(2, '0');
+      timerMins.textContent = String(m).padStart(2, '0');
+      timerSecs.textContent = String(s).padStart(2, '0');
+
+      // Progreso semanal
+      const monday = getMondayStart(now);
+      const totalWeekMs = target - monday;
+      const elapsedMs = now - monday;
+
+      let pct = 0;
+      if (totalWeekMs > 0 && elapsedMs > 0) {
+        pct = Math.min(100, Math.max(0, Math.round((elapsedMs / totalWeekMs) * 100)));
+      }
+      progressBar.style.width = pct + '%';
+      progressTxt.textContent = pct + '% COMPLETADO';
+    }
+
+    setInterval(updateLiveCountdown, 1000);
+    updateLiveCountdown();
+
+    /* --------------------------------------------------------------------------
+       3. SIMULACIÓN DE ALARMA DEL VIERNES & CONFETI NEO-BRUTALISTA
+       -------------------------------------------------------------------------- */
+    window.simulateFridayAlarm = function() {
+      playNote(523, 0.15); // Do
+      setTimeout(() => playNote(659, 0.15), 140); // Mi
+      setTimeout(() => playNote(783, 0.15), 280); // Sol
+      setTimeout(() => playNote(1046, 0.35), 420); // Do alto
+
+      showToast('🎉 ¡VIERNES 14:00! ¡CAMPANA DE SOMORROSTRO SONANDO!');
+      weekendBanner.classList.add('active');
+      launchConfettiStream();
+    };
+
+    // Motor de Confeti Canvas Fluido
+    const confettiCanvas = document.getElementById('confettiCanvas');
+    const cCtx = confettiCanvas.getContext('2d');
+    let particles = [];
+
+    function syncCanvasDimensions() {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', syncCanvasDimensions);
+    syncCanvasDimensions();
+
+    function launchConfettiStream() {
+      const colors = ['#FFDE59', '#00E5FF', '#FF5722', '#FF66C4', '#00E676', '#000000'];
+      for (let i = 0; i < 90; i++) {
+        particles.push({
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2,
+          w: Math.random() * 12 + 6,
+          h: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 18,
+          vy: (Math.random() - 0.7) * 18,
+          gravity: 0.35,
+          rot: Math.random() * 360,
+          rotSpeed: (Math.random() - 0.5) * 8
+        });
+      }
+      if (!animatingConfetti) {
+        renderConfetti();
+      }
+    }
+
+    let animatingConfetti = false;
+    function renderConfetti() {
+      animatingConfetti = true;
+      cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += p.gravity;
+        p.rot += p.rotSpeed;
+
+        cCtx.save();
+        cCtx.translate(p.x, p.y);
+        cCtx.rotate((p.rot * Math.PI) / 180);
+        cCtx.fillStyle = p.color;
+        cCtx.strokeStyle = '#000000';
+        cCtx.lineWidth = 1.5;
+        cCtx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        cCtx.strokeRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        cCtx.restore();
+
+        if (p.y > window.innerHeight + 20) {
+          particles.splice(i, 1);
+        }
+      }
+
+      if (particles.length > 0) {
+        requestAnimationFrame(renderConfetti);
+      } else {
+        animatingConfetti = false;
+        cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       4. TESTER INTERACTIVO RJ45 (8 PINES EN VERDE)
+       -------------------------------------------------------------------------- */
+    let testerInProgress = false;
+    window.testRJ45Leds = function() {
+      if (testerInProgress) return;
+      testerInProgress = true;
+      showToast('⚡ Comprobando continuidad de los 8 hilos...');
+
+      const leds = [
+        document.getElementById('n1'),
+        document.getElementById('n2'),
+        document.getElementById('n3'),
+        document.getElementById('n4'),
+        document.getElementById('n5'),
+        document.getElementById('n6'),
+        document.getElementById('n7'),
+        document.getElementById('n8')
+      ];
+
+      leds.forEach(node => node.classList.remove('lit'));
+
+      let pinIndex = 0;
+      const timer = setInterval(() => {
+        if (pinIndex < 8) {
+          leds[pinIndex].classList.add('lit');
+          playNote(450 + (pinIndex * 85), 0.08);
+          pinIndex++;
+        } else {
+          clearInterval(timer);
+          playNote(1100, 0.25);
+          showToast('✅ ¡8/8 PINES PERFECTOS! Cable crimpado sin fallos.');
+          setTimeout(() => { testerInProgress = false; }, 1200);
+        }
+      }, 190);
+    };
+
+    /* --------------------------------------------------------------------------
+       5. FORMULARIO DE CONTACTO CON VALIDACIÓN ESTRICTA HTML5
+       -------------------------------------------------------------------------- */
+    window.handleFormSend = function(e) {
+      e.preventDefault();
+      
+      const form = document.getElementById('sosForm');
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      playNote(620, 0.1);
+      setTimeout(() => playNote(980, 0.15), 110);
+
+      const name = document.getElementById('studentName').value;
+      const mail = document.getElementById('studentMail').value;
+      const cat = document.getElementById('incidentCategory').value;
+      const detail = document.getElementById('incidentDetail').value;
+      const alert = document.getElementById('formSentAlert');
+
+      alert.classList.add('show');
+      showToast(`Parte de ${name} preparado con éxito.`);
+      launchConfettiStream();
+
+      // Generar mailto link listo para el correo de estudiante
+      const mailtoUrl = `mailto:jareth.rosero08@somorrostro.eus?subject=[PARTE-SOS-SOMORROSTRO] Incidencia de ${encodeURIComponent(name)} (${encodeURIComponent(cat)})&body=Alumno: ${encodeURIComponent(name)}%0D%0ACorreo: ${encodeURIComponent(mail)}%0D%0ACategoría: ${encodeURIComponent(cat)}%0D%0A%0D%0ADetalle del Suceso:%0D%0A${encodeURIComponent(detail)}`;
+      
+      console.log('Enlace mailto preparado para correo institucional:', mailtoUrl);
+
+      setTimeout(() => {
+        document.getElementById('sosForm').reset();
+      }, 4000);
+    };
+
+    /* --------------------------------------------------------------------------
+       6. TOAST NOTIFICADOR FLOTANTE
+       -------------------------------------------------------------------------- */
+    let toastTimeout = null;
+    function showToast(text) {
+      const toast = document.getElementById('toastBox');
+      const msg = document.getElementById('toastMsg');
+      if (!toast || !msg) return;
+      msg.textContent = text;
+      toast.classList.add('visible');
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('visible');
+      }, 3500);
+    }
+
+    /* --------------------------------------------------------------------------
+       7. MENÚ MÓVIL RESPONSIVE
+       -------------------------------------------------------------------------- */
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    if (menuToggle && navMenu) {
+      menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active-menu');
+        playNote(700, 0.05);
+      });
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active-menu');
+        });
+      });
+    }
+  </script>
+</body>
+</html>
