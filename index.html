@@ -28,6 +28,10 @@
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200&auto=format&fit=crop">
   <meta name="twitter:image:alt" content="Estudiantes de informática en el taller de Somorrostro">
 
+  <!-- Logotipo Oficial y Favicon del Centro Somorrostro -->
+  <link rel="icon" type="image/png" href="assets/logo-somorrostro.png">
+  <link rel="apple-touch-icon" href="assets/logo-somorrostro.png">
+
   <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -188,6 +192,87 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
+    }
+
+    /* Marco Neo-Brutalista para el Logotipo Oficial de Somorrostro */
+    .brand-logo-frame {
+      height: 44px;
+      padding: 3px 6px;
+      background-color: #121824;
+      border: var(--border-black);
+      border-radius: var(--radius-sm);
+      box-shadow: 3px 3px 0px #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+    }
+    .brand-logo-frame:hover {
+      transform: rotate(2deg) scale(1.05);
+      box-shadow: 4px 4px 0px #111;
+    }
+    .brand-logo-img {
+      height: 100%;
+      width: auto;
+      max-height: 38px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .hero-badge-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 0.85rem;
+    }
+    .hero-logo-frame {
+      height: 34px;
+      padding: 2px 6px;
+      background-color: #121824;
+      border: 2px solid #111;
+      border-radius: var(--radius-sm);
+      box-shadow: 2px 2px 0px #111;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.15s ease;
+    }
+    .hero-logo-frame:hover {
+      transform: rotate(-2deg) scale(1.04);
+    }
+    .hero-logo-img {
+      height: 100%;
+      width: auto;
+      max-height: 28px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .footer-logo-frame {
+      height: 46px;
+      padding: 3px 6px;
+      background-color: #121824;
+      border: var(--border-black);
+      border-radius: var(--radius-sm);
+      box-shadow: 3px 3px 0px #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .footer-logo-frame:hover {
+      transform: scale(1.04);
+    }
+    .footer-logo-img {
+      height: 100%;
+      width: auto;
+      max-height: 40px;
+      object-fit: contain;
+      display: block;
     }
 
     .brand-box {
@@ -1334,6 +1419,27 @@
       .brand-info h1 {
         font-size: 1.05rem;
       }
+      .brand-logo-frame {
+        height: 38px;
+        padding: 2px 5px;
+      }
+      .brand-logo-img {
+        max-height: 32px;
+      }
+      .hero-logo-frame {
+        height: 30px;
+        padding: 2px 4px;
+      }
+      .hero-logo-img {
+        max-height: 24px;
+      }
+      .footer-logo-frame {
+        height: 40px;
+        padding: 2px 4px;
+      }
+      .footer-logo-img {
+        max-height: 34px;
+      }
       .footer-columns {
         gap: 1.8rem;
       }
@@ -1380,8 +1486,10 @@
   <!-- Navbar Neo-Brutalista con Menú Colapsable -->
   <header class="site-nav">
     <div class="container nav-content">
-      <a href="#hero" class="nav-brand">
-        <div class="brand-box">S</div>
+      <a href="#hero" class="nav-brand" aria-label="Ir al inicio - Centro de Formación Somorrostro">
+        <div class="brand-logo-frame" title="Centro de Formación Somorrostro">
+          <img src="assets/logo-somorrostro.png" alt="Logotipo oficial del Centro de Formación Somorrostro" class="brand-logo-img" width="70" height="40">
+        </div>
         <div class="brand-info">
           <h1>CF Somorrostro</h1>
           <span class="brand-badge">FPB INFORMÁTICA</span>
@@ -1415,7 +1523,10 @@
   <section class="hero-section" id="hero">
     <div class="container hero-grid">
       <div>
-        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+        <div class="hero-badge-row">
+          <div class="hero-logo-frame" title="Centro de Formación Somorrostro (Muskiz)">
+            <img src="assets/logo-somorrostro.png" alt="Logotipo oficial del Centro de Formación Somorrostro en Muskiz" class="hero-logo-img" width="58" height="30">
+          </div>
           <span class="sticker sticker-orange">FP BÁSICA INFORMÁTICA</span>
           <span class="sticker sticker-cyan">SAN JUAN 10, MUSKIZ</span>
           <span class="sticker sticker-yellow">ORIENTACIÓN 4º ESO</span>
@@ -1834,11 +1945,16 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-columns">
-        <!-- Columna 1: CF Somorrostro -->
+        <!-- Columna 1: CF Somorrostro con Logotipo Oficial -->
         <div>
-          <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.8rem;">
-            <div class="brand-box" style="width: 38px; height: 38px; font-size: 1.2rem;">S</div>
-            <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 900;">CF SOMORROSTRO</h3>
+          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1rem;">
+            <div class="footer-logo-frame" title="Centro de Formación Somorrostro">
+              <img src="assets/logo-somorrostro.png" alt="Logotipo oficial del Centro de Formación Somorrostro" class="footer-logo-img" width="72" height="40">
+            </div>
+            <div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 900; line-height: 1.1;">CF SOMORROSTRO</h3>
+              <span style="font-family: var(--font-mono); font-size: 0.72rem; font-weight: 800; background: var(--pop-yellow); border: 1.5px solid #111; padding: 0.1rem 0.45rem; border-radius: 4px; display: inline-block;">IRAKAS-GUNEA / SAN JUAN 10</span>
+            </div>
           </div>
           <p style="font-weight: 600; line-height: 1.6; margin-bottom: 1.2rem; font-size: 0.95rem;">
             Página oficial del proyecto de <strong>FP Básica en Informática</strong>. Aprende código, montaje y redes en un entorno real con metodologías activas y preparación orientada al empleo.
